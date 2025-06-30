@@ -1,0 +1,21 @@
+# Environment variables
+.env
+
+# Local config backups
+js/config.local.js.backup
+
+# Node modules (if using npm)
+node_modules/
+
+# Operating System Files
+.DS_Store
+Thumbs.db
+
+# IDE/Editor files
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Log files
+*.log
