@@ -1,15 +1,41 @@
 /* Global reset & box sizing */
+:root {
+  --primary-red: #e4002b;
+  --primary-blue: #0032a0;
+
+  /* Font variables */
+  --font-primary: "Inter", Arial, sans-serif;
+}
+
 * {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
 }
 
-/* Base page styles */
+/* Video background styles - covers 100% of viewport */
+#background-video {
+  /* Position the video behind all content */
+  position: fixed;
+  top: 0;
+  left: 0;
+  /* Make video cover entire screen (100% viewport width and height) */
+  width: 100vw;
+  height: 100vh;
+  /* Keep video behind other content */
+  z-index: -1;
+  /* Make sure video covers the area properly without stretching */
+  object-fit: cover;
+}
+
+/* Make sure content appears above video background */
 body {
+  /* Keep existing styles but make body relative for layering */
+  position: relative;
   font-family: Arial, sans-serif;
-  background-color: #f1f1f1;
   padding: 20px;
+  /* Add semi-transparent overlay for better text readability */
+  background: rgba(0, 0, 0, 0.3);
 }
 
 /* Centered container */
@@ -29,9 +55,9 @@ body {
 }
 
 h1 {
-  font-family: Verdana, sans-serif;
+  font-family: var(--font-primary);
   font-weight: bold;
-  color: #061f4a;
+  color: #fff;
 }
 
 /* Style all other headers with the same color */
@@ -51,6 +77,11 @@ h5.card-title {
 /* Style all paragraph tags */
 p {
   color: #5b616b;
+}
+
+/* Override Bootstrap text-muted class with primary blue color */
+.text-muted {
+  color: var(--primary-red) !important;
 }
 
 /* Logo */
@@ -85,12 +116,16 @@ button {
 
 /* Button specific */
 button {
-  background-color: #d3d3d3;
-  color: black;
+  background-color: var(--primary-blue);
+  color: #fff;
   cursor: pointer;
+  border: 2px solid #808080;
+  /* Add smooth transition for all properties on hover */
+  transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out;
 }
 button:hover {
-  background-color: #bfbfbf;
+  background-color: #002080;
+  color: #fff;
 }
 
 /* Stack horizontally on wider screens */
@@ -115,6 +150,10 @@ button:hover {
   justify-content: center;
 }
 
+.gallery-text {
+  color: #fff;
+}
+
 /* When gallery has Bootstrap row class, ensure proper placeholder display */
 .gallery.row {
   margin: 0;
@@ -131,6 +170,14 @@ button:hover {
   overflow: hidden;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
   border: none;
+  /* Add smooth transition for hover effects */
+  transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+}
+
+/* Add hover effect to entire card */
+.gallery .card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
 }
 
 /* Ensure image container doesn't overflow into card body */
@@ -140,9 +187,8 @@ button:hover {
   height: 250px;
 }
 
-/* Add scaling effect to images within cards */
+/* Remove scaling effect from images within cards */
 .gallery .card img {
-  transition: transform 0.3s ease-in-out;
   transform-origin: center center;
   display: block;
   width: 100%;
@@ -150,8 +196,9 @@ button:hover {
   object-fit: cover;
 }
 
-.gallery .card:hover img {
-  transform: scale(1.1);
+/* Add black border to card body */
+.card-body {
+  border: 1px solid #000;
 }
 
 /* Legacy gallery items - keep for fallback */
@@ -193,8 +240,7 @@ button:hover {
   width: 100%;
   text-align: center;
   padding: 40px;
-  color: #666;
-  background-color: white;
+
   flex: 1 1 100%;
 }
 
